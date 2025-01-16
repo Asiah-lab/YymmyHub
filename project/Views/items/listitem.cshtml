@@ -1,0 +1,44 @@
+﻿@model List<items>
+
+
+@{
+    Layout = "~/Views/Shared/layoutMaster.cshtml";
+}
+
+<h1 class="text-center text-white">Items List</h1>
+
+<table class="table table-bordered text-center bg-light">
+    <thead class="table-active">
+        <tr>
+            <th>item id</th>
+            <th>item name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Catagroy</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.name</td>
+                <td>@item.description</td>
+                <td>@item.price</td>
+                <td>@item.itemquantity</td>
+                <td>
+                    @{
+                        var categoryName = @item.category switch
+                        {
+                            1 => "cakes",
+                            2 => "sweets",
+                            _ => "Unknown Category" // Default case to handle unmatched values
+                        };
+                    }
+                    @categoryName
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

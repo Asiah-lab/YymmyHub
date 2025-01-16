@@ -1,0 +1,77 @@
+﻿@model IEnumerable<project.Models.items>
+
+
+@if ((string)ViewData["role"] == "admin")
+{
+    
+    Layout = "~/Views/Shared/layoutMaster.cshtml";
+
+}
+else
+{
+
+    Layout = "~/Views/Shared/layoutCustomer.cshtml";
+}
+
+<h1 class="text-white text-center">Index</h1>
+
+<p>
+    @if ((string)ViewData["role"] == "admin")
+    {
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#insertModal"> Add New Item</button>
+        @await Html.PartialAsync("insertitems", new items())
+    }
+
+</p>
+<table class="table table-bordered text-center bg-light">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.imgfile)
+            </th>
+
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+
+
+                <td>
+                    <!---- @Html.DisplayFor(modelItem => item.imgfile)--->
+                    <img src="~/images/@item.imgfile" width="60" height="50" />
+                </td>
+
+                <td>
+
+                    <a asp-action="Details" asp-route-id="@item.Id" class=" btn btn-info">Details</a>
+                    @if ((string)ViewData["role"] == "admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class=" btn btn-danger">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<project.Models.orders>
+@{
+    Layout = "~/Views/Shared/layoutCustomer.cshtml";
+}
+
+<h1 class="text-center text-white">My Orders</h1>
+<table class="table table-bordered text-center bg-light">
+    <thead>
+        <tr>
+            <th>   @Html.DisplayNameFor(model => model.custname)</th>
+            <th>  @Html.DisplayNameFor(model => model.total) </th>
+            <th>  @Html.DisplayNameFor(model => model.orderdate)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>   @Html.DisplayFor(modelItem => item.custname) </td>
+                <td> @Html.DisplayFor(modelItem => item.total)</td>
+                <td>  @Html.DisplayFor(modelItem => item.orderdate)</td>
+                <td>  <a asp-action="Orderline" asp-route-orid="@item.Id">Details</a> </td>
+            </tr>
+        }
+    </tbody>
+</table>

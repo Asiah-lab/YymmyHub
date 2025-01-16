@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "addadmin";
+}
+@{
+    Layout = "~/Views/Shared/layoutMaster.cshtml";
+}
+
+
+
+<form asp-action="addadmin" onsubmit="return validateForm()" class="login-form">
+    <h1 class="text-center">Add Admin</h1> <hr />
+
+
+    <div class="form-group">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input name="na" class="form-control" placeholder="Enter your Name" /></div>
+        <div class="form-group">
+            <label id="Password" for="pass">Password</label>
+            <input name="nu" type="password" id="pass" class="form-control" placeholder="Enter your Password" required></div>
+        <div class="form-group">
+            <label id="confirmpass" for="confpass">Confirm Password</label>
+            <input type="password" id="confpass" class="form-control" placeholder="Enter your Password" required></div>
+
+
+    </div>
+
+    <div class="form-group justify-content: center;">
+        <input type="submit" value="Add" class="btn btn-md btn-success" style="width:50%" />
+
+    </div>
+    <p style="color:red"> @ViewData["message"]</p>
+
+</form>
+
+<script>
+
+    function validateForm() {
+        var password = document.getElementById("pass").value;
+        var confirm_password = document.getElementById("confpass").value;
+        if (password != confirm_password) {
+            alert("Passwords do not match!");
+            document.getElementById("Password").style.color = "red";
+            document.getElementById("confirmpass").style.color = "red";
+            return false;
+        }
+        return true;
+    }
+</script>

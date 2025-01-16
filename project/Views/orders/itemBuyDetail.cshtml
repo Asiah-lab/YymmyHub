@@ -1,0 +1,107 @@
+﻿@model project.Models.items
+@{
+    Layout = "~/Views/Shared/layoutCustomer.cshtml";
+}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container" style="max-width:600px;  margin-top: 90px; margin:auto;  background-color: rgba(255, 255, 255, 0.7);>
+        @if (ViewData["Error"] != null)
+        {
+            <p class="error-massage">@ViewData["Error"]</p>
+        }
+        <h1 class="text-center" style="text-align:center;"></h1>
+        <h1 class="text-center">ItemBuyDetail</h1>
+
+        <dl class="row" >
+            <dt class="col-sm-2">Name : </dt>
+
+            <dd class="col-sm-10">@Model.name</dd>
+
+            <dt class="col-sm-2">Price: </dt>
+
+            <dd class="col-sm-10">@Model.price</dd>
+
+
+            <dt class="col-sm-2">discount: </dt>
+
+            <dd class="col-sm-10">@Model.discount</dd>
+
+            <dt class="col-sm-2">category: </dt>
+
+            <dd class="col-sm-10">
+                @{
+                    var categoryName = Model.category switch
+                    {
+                        1 => "cakes",
+                        2 => "sweets"
+                    };
+                }
+                @categoryName
+            </dd>
+        </dl>
+
+        <dt class="col-sm-2"></dt>
+        <dd class="col-sm-10">
+            <img src="~/images/@Model.imgfile" height="150" />
+        </dd>
+        </dl>
+
+        <form asp-action="cartadd" asp-controller="orders">
+            <input type="hidden" name="iditem" value=@Model.Id />
+            <input type="hidden" id="stockQty" value="@Model.itemquantity" />
+            <div class="form-group">
+                <label for="quantity" class="control-label">Quantity</label>
+                <input name="quantity" class="form-control" id="qu" onchange="gettotal()" />
+
+            </div>
+            <div>
+                <p style="color:blue;" id="tot"></p>
+                <p style="color:red;" id="errorMsg"></p>
+            </div>
+            <input type="submit" value="Add to Cart" class="btn btn-primary" id="buyBtn" />
+        </form>
+
+    </div>
+
+
+
+@section scripts {
+    <script>
+        function gettotal() {
+            let quantityInput = document.getElementById('qu').value;
+            let price = parseFloat('@Model.price');
+            let availableStock = parseInt(document.getElementById('stockQty').value);
+            let discount = '@Model.discount' === "yes" ? 0.9 : 1;
+            let tot = 0;
+            let errorMsg = "";
+
+            if (quantityInput && !isNaN(quantityInput)) {
+                let quantity = parseInt(quantityInput);
+                tot = quantity * price * discount;
+
+                if (quantity > availableStock) {
+                    errorMsg = "Quantity exceeds available stock";
+                    document.getElementById("buyBtn").disabled = true;
+                } else {
+                    document.getElementById("buyBtn").disabled = false;
+                }
+            } else {
+                errorMsg = "Please enter a valid quantity";
+                document.getElementById("buyBtn").disabled = true;
+            }
+
+            document.getElementById("tot").innerHTML = "You need to pay total = " + tot.toFixed(2) + " SR";
+            document.getElementById("errorMsg").innerHTML = errorMsg;
+        }
+    </script>
+}
+</body>

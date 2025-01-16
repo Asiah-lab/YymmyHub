@@ -1,0 +1,93 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/back2.jpg');
+    background-size: cover;
+}
+
+.login,
+.reg-form,
+.login-form,
+.form {
+    background-color: rgba(255, 182, 193, 0.8); /* Pink with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login {
+    width: 350px;
+    height: 450px;
+    margin-top: 120px;
+    background-image: url('../images/backlogin.png');
+    background-size: cover; /* Ensure full coverage */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-form {
+    width: 350px;
+    height: 450px;
+    margin: 90px auto; /* Center the form */
+    background-image: url(images/backlogin.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.reg-form {
+    width: 400px;
+    height: auto; /* Adjust height for content */
+    margin: 90px auto; /* Center the form */
+    background-image: url(images/backlogin.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.form {
+    width: 350px;
+    height: auto; /* Adjust height for content */
+    margin: 90px auto; /* Center the form */
+    background-image: url(images/backlogin.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.centered-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group Spacing */
+.form-group {
+    margin-bottom: 15px;
+}

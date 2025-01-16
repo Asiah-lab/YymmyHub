@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "dashboard";
+}
+@{
+    Layout = "~/Views/Shared/layoutMaster.cshtml";
+}
+
+<h1 class="text-center text-white">Dashboard</h1>
+
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Category');
+            data.addColumn('number', 'items');
+            data.addRows([
+                ['cakes', @ViewData["d1"]],
+                ['sweets', @ViewData["d2"]]
+            ]);
+            var options = {
+                'title': 'Count of Orders',
+                //////////////////////////////////////////
+                'width': 400,
+                'height': 230
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-primary text-white">Orders Chart</div>
+                    <div class="card-body">
+                        <div id="chart_div"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br />
+
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-danger text-white text-center'>CAKES</div>
+                <div class='card-body text-center'><img src='~/images/cakes.jpg' ; width='90px'></div>
+                <div class='card-footer text-center'>
+                    count of orders <div> @ViewData["d1"] </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-warning text-white text-center '> SWEET </div>
+                <div class='card-body text-center'><img src='~/images/sweets.jpg' ; width='90px'></div>
+                <div class='card-footer text-center'>
+                    count of orders <div> @ViewData["d2"] </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class='card'>
+                <div class='card-header bg-info text-white text-center '> TOTAL </div>
+                <div class='card-body text-center'><img src='~/images/website_logo.png' ; width='60px'></div>
+                <div class='card-footer text-center'>
+                    count of orders <div> @ViewData["total"] </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  
+</body>
+</html>

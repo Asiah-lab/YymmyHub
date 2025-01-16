@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "CatalogueBuy";
+}
+@{
+    Layout = "~/Views/Shared/layoutCustomer.cshtml";
+}
+
+<h1 class="text-center text-white">CatalogueBuy</h1>
+
+
+@{
+    ViewData["Title"] = "CatalogueBuy";
+}
+
+@model IEnumerable<project.Models.items>
+
+<hr />
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        @item.name
+                    </div>
+                    <div class="card-body">
+                        <img src="~/images/@item.imgfile" height="150" />
+                    </div>
+                    <div class="card-footer">
+                        @item.price <br />
+                        <a asp-action="itemBuyDetail" asp-route-id="@item.Id">Buy</a> |
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

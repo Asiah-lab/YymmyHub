@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    body {
+        background-image: url('../images/backlogin.png');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; 
+        background-repeat: no-repeat;
+        margin: 0; 
+    }
+
+    .login-form {
+        background-color: rgba(239, 79, 122, 0.29);
+        ;
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0 4px 8px rgba(7, 7, 7, 0.989);
+    }
+</style>
+<div class="centered-container">
+    <form asp-action="Login" class="login-form"> 
+        <h2 class="text-center">Login</h2> <hr />
+        <div class="form-group">
+            <label for="na" class="control-label">Username</label>
+            <input id="na" name="na" class="form-control" placeholder="Enter your name" />
+        </div>
+        <div class="form-group">
+            <label for="pa" class="control-label">Password</label>
+            <input id="pa" name="pa" type="password" class="form-control" placeholder="Enter your password" />
+        </div>
+        <div class="form-check">
+            <input type="checkbox" name="auto" id="auto-login">
+            <label for="auto-login"> Auto login</label>
+
+        </div>
+        <div class="form-group" style="display: flex; justify-content: center;">
+            <input type="submit" value="Login" class="btn btn-md btn-success" style="width:70%" />
+        </div>
+
+        <p style="color:red;">@ViewData["message"]</p>
+        <p>No Register? <a asp-action="registration">Register here</a></p>
+
+    </form>
+
+
+</div>

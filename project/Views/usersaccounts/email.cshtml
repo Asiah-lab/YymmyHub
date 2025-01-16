@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/layoutMaster.cshtml";
+}
+
+
+
+<body>
+    <form asp-action="email" class="login-form">
+        <h2 class="text-center">Send Email</h2><hr />
+    <div class="form-group">
+        <label class="control-label"> customer Email Adress</label>
+        <input name="address" placeholder="Enter The Customer Email" class="form-control" style="width: 80%; padding: 10px; margin-bottom: 10px;" /> <br />
+    </div>
+
+    <div class="form-group">
+        <label for="body" class="control-label"> Message</label>
+        <br />
+        <textarea name="body" rows="4" cols="50" style=" width: 90%; padding: 10px;"> WELCOME! Happy to see you:) </textarea>
+
+
+    </div>
+    <input type="submit" value="Send Email" class="btn btn-success" style="width: 50%; padding: 10px; " />
+    <p> @ViewData["Message"]</p>
+</form>
+
+
+
+</body>
